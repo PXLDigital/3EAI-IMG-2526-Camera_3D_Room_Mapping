@@ -1,12 +1,12 @@
 # 3D Camera Mapping Using Stereo Vision
 
-## What is Stereo Vision ?
+## What is Stereo Vision
 
 **Stereo vision is a method used by humans, animals, and machines to understand depth, how far away things are by using two eyes or two cameras.**
 **Each eye (or camera) sees the world from a slightly different angle.**    
 **Your brain (or an algorithm) then compares these two views to figure out how far away objects are.**
 
-## 2. How It Works 
+## How It Works 
 ### 1. Two Images
 - You start with two images taken at the same time from two slightly separated points—like your left eye and right eye.
 

@@ -22,7 +22,6 @@ f = 700.0
 
 # Baseline assumption (meters)
 baseline = 0.17
-
 cx = w / 2
 cy = h / 2
 
