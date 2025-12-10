@@ -38,10 +38,5 @@ This shift is called disparity.
 - Works in real time    
 - Gives dense 3D information (depth for every pixel)    
 
-# Software
-## 
-
-## 
-
 ## Sources
 [Tutorial Stereo Vision and Depth Estimation](https://www.youtube.com/watch?v=KOSS24P3_fY&t=63s)
