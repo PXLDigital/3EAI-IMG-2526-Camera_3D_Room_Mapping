@@ -61,58 +61,6 @@ Both methods require `calibration_data.npz` containing:
 
 ---
 
-## How Each Method Works
-
-### Method 1: Disparity-Based (Dense Point Cloud)
-
-This method computes depth for almost every pixel by finding matching points between images.
-
-**Process:**
-1. **Load calibration** - Gets camera parameters to correct distortion and compute 3D coordinates
-2. **Stereo rectification** - Aligns both images so matching points lie on the same horizontal line, making the search easier
-3. **Compute disparity map** - Uses SGBM algorithm to find pixel shifts between left and right images. Objects closer to the camera have larger shifts
-4. **Reproject to 3D** - Converts disparity values to 3D coordinates using the Q matrix from rectification
-5. **Save PLY file** - Exports point cloud with RGB colors from the left image
-
-**Why this method:**
-- Captures complete surfaces (dense reconstruction)
-- No need to detect specific features
-- Great for modeling objects and scenes
-
-**Limitations:**
-- Computationally intensive
-- Struggles with textureless surfaces
-- Can produce noise in poorly lit areas
-
----
-
-### Method 2: Triangulation-Based (Sparse Point Cloud)
-
-This method detects distinctive features in both images and triangulates their 3D positions.
-
-**Process:**
-1. **Load calibration** - Gets camera parameters (can work with defaults if unavailable)
-2. **Undistort images** - Removes lens distortion for accurate feature matching
-3. **Enhance contrast** - Uses CLAHE to improve feature detection in varied lighting
-4. **Feature detection** - SIFT algorithm finds distinctive keypoints (corners, edges, textures)
-5. **Feature matching** - FLANN matcher finds corresponding features between images, filtered by Lowe's ratio test
-6. **Estimate camera pose** - Computes Essential Matrix and recovers rotation/translation between cameras
-7. **Triangulation** - Calculates 3D position of each matched feature point
-8. **Scale correction** - Applies known baseline distance to get measurements in meters
-9. **Save PLY file** - Exports point cloud with RGB colors from feature locations
-
-**Why this method:**
-- Fast computation
-- Works without pre-calibrated stereo rig
-- Ideal for tracking and structure-from-motion applications
-
-**Limitations:**
-- Only reconstructs feature points (sparse)
-- Requires textured scenes
-- Fewer points than disparity method
-
----
-
 ## Usage Guide
 
 ### Running the Scripts
